@@ -178,12 +178,22 @@ const HomepageLayout = () => (
       async
     />
     <Script
-      src="https://localdev.lululemon.com:9000/validation-configs/3.3.0/validation-configs-remoteEntry.js"
+      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/transformation-configs/latest/transformation-configs-remoteEntry.js"
       strategy="beforeInteractive"
       async
     />
     <Script
-      src="http://localhost:4000/library/browser/mwa-analytics.js"
+      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/validation-configs/latest/validation-configs-remoteEntry.js"
+      strategy="beforeInteractive"
+      async
+    />
+    <Script
+      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/lam-model/latest/lam-model-remoteEntry.js"
+      strategy="beforeInteractive"
+      async
+    />
+    <Script
+      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/%40lululemon/mwa-analytics/latest/browser/mwa-analytics.js"
       async
       strategy="beforeInteractive"
     />
