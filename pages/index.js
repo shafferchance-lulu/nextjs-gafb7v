@@ -53,7 +53,22 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size="huge">
+    <Button
+      primary
+      size="huge"
+      onClick={() => {
+        MwaAnalytics.trackEvent(MwaAnalytics.EVENT_CATEGORY.COMPONENT_EVENT, {
+          eventSubType: MwaAnalytics.EVENT_TYPE.INTERACTION,
+          component: {
+            id: 'homepage:cta-click',
+            type: 'Button',
+            text: 'Custom Link Interaction',
+            position: -1,
+            totalCount: -1,
+          },
+        });
+      }}
+    >
       Custom Link Interaction
       <Icon name="right arrow" />
     </Button>
@@ -170,7 +185,7 @@ ResponsiveContainer.propTypes = {
 const HomepageLayout = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      MwaAnalytics.intializeAnalytics('TEST');
+      MwaAnalytics.initializeAnalytics('TEST');
     }
   });
 
