@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import { createMedia } from '@artsy/fresnel';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {
   Button,
   Container,
@@ -167,91 +167,105 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 };
 
-const HomepageLayout = () => (
-  <div>
-    <Head>
-      <title>Create Next App</title>
-    </Head>
-    <Script
-      src="https://assets.adobedtm.com/7a84fdea953b/09aece6f582f/launch-e6cc9ebc113b-development.min.js"
-      strategy="beforeInteractive"
-      async
-    />
-    <Script
-      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/transformation-configs/latest/transformation-configs-remoteEntry.js"
-      strategy="beforeInteractive"
-      async
-    />
-    <Script
-      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/validation-configs/latest/validation-configs-remoteEntry.js"
-      strategy="beforeInteractive"
-      async
-    />
-    <Script
-      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/lam-model/latest/lam-model-remoteEntry.js"
-      strategy="beforeInteractive"
-      async
-    />
-    <Script
-      src="https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/%40lululemon/mwa-analytics/latest/browser/mwa-analytics.js"
-      async
-      strategy="beforeInteractive"
-    />
-    <ResponsiveContainer>
-      <Segment style={{ padding: '8em 0em' }} vertical>
-        <Grid container stackable verticalAlign="middle">
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <Image
-                bordered
-                rounded
-                size="large"
-                src="https://res.cloudinary.com/yerdle/image/upload/w_1000,h_1000,c_fit,q_auto:eco,f_auto/v1637183710/production/partners/14/inventoryItem/1437354/ed9lysxaeighwilr0fh3.jpg"
-              />
-            </Grid.Column>
-            <Grid.Column floated="right" width={6}>
-              <Header as="h3" style={{ fontSize: '2em' }}>
-                Quick Pace Short Sleeve Shirt
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>$45.00</p>
-              <Grid.Column textAlign="center">
-                <Button size="huge">ADD TO BAG</Button>
-              </Grid.Column>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Segment>
+const HomepageLayout = () => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      MwaAnalytics.intializeAnalytics('TEST');
+    }
+  });
 
-      <Segment inverted vertical style={{ padding: '5em 0em' }}>
-        <Container>
-          <Grid divided inverted stackable>
+  return (
+    <div>
+      <Head>
+        <title>Create Next App</title>
+      </Head>
+      <Script
+        src="https://assets.adobedtm.com/7a84fdea953b/09aece6f582f/launch-e6cc9ebc113b-development.min.js"
+        strategy="beforeInteractive"
+        async
+      />
+      <Script
+        src={`https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/transformation-configs/latest/transformation-configs-remoteEntry.js?time=${Date.now()}`}
+        strategy="beforeInteractive"
+        defer
+        async
+      />
+      <Script
+        src={`https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/validation-configs/latest/validation-configs-remoteEntry.js?time=${Date.now()}`}
+        strategy="beforeInteractive"
+        defer
+        async
+      />
+      <Script
+        src={`https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/lam-model/latest/lam-model-remoteEntry.js?time=${Date.now()}`}
+        strategy="beforeInteractive"
+        defer
+        async
+      />
+      <Script
+        src={`https://public-package-bucket-temp.s3.us-west-2.amazonaws.com/%40lululemon/mwa-analytics/latest/browser/mwa-analytics.js?time=${Date.now()}`}
+        async
+        defer
+        strategy="beforeInteractive"
+      />
+      <ResponsiveContainer>
+        <Segment style={{ padding: '8em 0em' }} vertical>
+          <Grid container stackable verticalAlign="middle">
             <Grid.Row>
-              <Grid.Column width={3}>
-                <Header inverted as="h4" content="About" />
-                <List link inverted>
-                  <List.Item as="a">Repository</List.Item>
-                  <List.Item as="a">Confluence Page</List.Item>
-                  <List.Item as="a">DATASE Board</List.Item>
-                </List>
+              <Grid.Column width={8}>
+                <Image
+                  bordered
+                  rounded
+                  size="large"
+                  src="https://res.cloudinary.com/yerdle/image/upload/w_1000,h_1000,c_fit,q_auto:eco,f_auto/v1637183710/production/partners/14/inventoryItem/1437354/ed9lysxaeighwilr0fh3.jpg"
+                />
               </Grid.Column>
-              <Grid.Column width={3}>
-                <Header inverted as="h4" content="Services" />
-                <List link inverted>
-                  <List.Item as="a">Support</List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column width={7}>
-                <Header as="h4" inverted>
-                  Provided to you by DCP Platform Team
+              <Grid.Column floated="right" width={6}>
+                <Header as="h3" style={{ fontSize: '2em' }}>
+                  Quick Pace Short Sleeve Shirt
                 </Header>
-                <p>For questions and inquiries please contact us via teams.</p>
+                <p style={{ fontSize: '1.33em' }}>$45.00</p>
+                <Grid.Column textAlign="center">
+                  <Button size="huge">ADD TO BAG</Button>
+                </Grid.Column>
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </Container>
-      </Segment>
-    </ResponsiveContainer>
-  </div>
-);
+        </Segment>
+
+        <Segment inverted vertical style={{ padding: '5em 0em' }}>
+          <Container>
+            <Grid divided inverted stackable>
+              <Grid.Row>
+                <Grid.Column width={3}>
+                  <Header inverted as="h4" content="About" />
+                  <List link inverted>
+                    <List.Item as="a">Repository</List.Item>
+                    <List.Item as="a">Confluence Page</List.Item>
+                    <List.Item as="a">DATASE Board</List.Item>
+                  </List>
+                </Grid.Column>
+                <Grid.Column width={3}>
+                  <Header inverted as="h4" content="Services" />
+                  <List link inverted>
+                    <List.Item as="a">Support</List.Item>
+                  </List>
+                </Grid.Column>
+                <Grid.Column width={7}>
+                  <Header as="h4" inverted>
+                    Provided to you by DCP Platform Team
+                  </Header>
+                  <p>
+                    For questions and inquiries please contact us via teams.
+                  </p>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+        </Segment>
+      </ResponsiveContainer>
+    </div>
+  );
+};
 
 export default HomepageLayout;
