@@ -185,7 +185,7 @@ ResponsiveContainer.propTypes = {
 const HomepageLayout = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      MwaAnalytics.initializeAnalytics('TEST');
+      MwaAnalytics.initializeAnalytics('TEST', {}, [], true);
     }
   });
 
